@@ -1,0 +1,1 @@
+# tailwindcss-pseudo-elements
