@@ -1,0 +1,19 @@
+{
+  "name": "tailwindcss-pseudo-elements",
+  "version": "0.0.1",
+  "description": "TailwindCSS Plugin that adds variants of pseudo elements.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutahaga/tailwindcss-pseudo-elements.git"
+  },
+  "keywords": [
+    "tailwindcss"
+  ],
+  "author": "Yuta Haga",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yutahaga/tailwindcss-pseudo-elements/issues"
+  },
+  "homepage": "https://github.com/yutahaga/tailwindcss-pseudo-elements#readme"
+}
