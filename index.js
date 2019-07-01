@@ -1,10 +1,10 @@
 const pseudoElements = require('./pseudo-elements')
 
-module.exports = function({addVariant}) {
+module.exports = function({addVariant, e}) {
   pseudoElements.forEach(pseudo => {
     addVariant(pseudo, ({modifySelectors, separator}) => {
       modifySelectors(({className}) => {
-        return `.${pseudo}${separator}${className}::${pseudo}`
+        return `.${e(`${pseudo}${separator}${className}`)}::${pseudo}`
       })
     })
   })
