@@ -5,7 +5,7 @@ module.exports = function({addVariant, e}) {
   pseudoElements.forEach(pseudo => {
     addVariant(pseudo, ({modifySelectors, separator}) => {
       modifySelectors(({className}) => {
-        return `.${escape(`${pseudo}${separator}${className}`)}::${pseudo}}`
+        return `.${escape(`${pseudo}${separator}${className}`)}::${pseudo}`
       })
     })
   })
