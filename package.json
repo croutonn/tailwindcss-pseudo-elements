@@ -26,6 +26,6 @@
     "tailwindcss": "^1.8.10"
   },
   "peerDependencies": {
-    "tailwindcss": ">=0.7.4"
+    "tailwindcss": ">=1.8.10"
   }
 }
