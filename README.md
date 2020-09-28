@@ -21,9 +21,20 @@ yarn add tailwindcss-pseudo-elements -D
 ### Configuration
 
 ```js
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   variants: {
-    textColor: ["responsive", "hover", "focus", "before", "after"],
+    textColor: [
+      "responsive",
+      "hover",
+      "focus",
+      "before",
+      "after",
+      "hover_before",
+      "hover_after",
+      "focus_before",
+    ],
   },
 
   plugins: [
@@ -36,9 +47,9 @@ module.exports = {
         "3/2": [3, 2],
         "1/1": [1, 1],
       },
-      variants: ["before", "responsive"],
+      variants: ["before", "hover_before", "responsive"],
     }),
-    function ({ addUtilities }) {
+    plugin(function ({ addUtilities }) {
       addUtilities(
         {
           ".empty-content": {
@@ -47,7 +58,7 @@ module.exports = {
         },
         ["before"]
       );
-    },
+    }),
   ],
 };
 ```
@@ -55,7 +66,12 @@ module.exports = {
 ### HTML
 
 ```html
-<div class="relative before:aspect-ratio-4/3 before:empty-content">
+<div
+  class="relative
+    before:aspect-ratio-4/3
+    hover:before:aspect-ratio-1/1
+    before:empty-content"
+>
   <img class="absolute pin w-full h-full" src="..." />
 </div>
 ```

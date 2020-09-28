@@ -3,7 +3,7 @@ const postcss = require('postcss')
 const tailwindcss = require('tailwindcss')
 const processor = postcss([tailwindcss('./test/tailwind.config.js')])
 
-describe('Testing...', () => {
+describe('Basic Usage', () => {
   it('@tailwind', async () => {
     const testData = `@tailwind utilities;`
     const { css } = await processor.process(testData, { from: '', to: '' })
@@ -15,5 +15,20 @@ describe('Testing...', () => {
     const { css } = await processor.process(testData, { from: '', to: '' })
     assert.include(css, '.after\\:text-blue::after')
     assert.include(css, '.before\\:text-blue::before')
+  })
+})
+
+describe('with pseudo-classes', () => {
+  it('@tailwind', async () => {
+    const testData = `@tailwind utilities;`
+    const { css } = await processor.process(testData, { from: '', to: '' })
+    assert.include(css, '.hover\\:before\\:text-black:hover::before')
+  })
+
+  it('@variants', async () => {
+    const testData = `@variants hover_after,hover_before{.text-blue{color:blue}}`
+    const { css } = await processor.process(testData, { from: '', to: '' })
+    assert.include(css, '.hover\\:after\\:text-blue:hover::after')
+    assert.include(css, '.hover\\:before\\:text-blue:hover::before')
   })
 })

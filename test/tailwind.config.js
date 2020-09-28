@@ -3,10 +3,10 @@ module.exports = {
     'black': '#22292f',
   },
   variants: {
-    textColor: ['before', 'after'],
+    textColor: ['before', 'after', 'hover_before', 'hover_after'],
   },
   modules: {
-    textColors: ['before', 'after'],
+    textColors: ['before', 'after', 'hover_before', 'hover_after'],
   },
   plugins: [
       require('../')
