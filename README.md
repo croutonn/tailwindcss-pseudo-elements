@@ -20,9 +20,9 @@ yarn add tailwindcss-pseudo-elements -D
 
 ```js
 module.exports = {
-  modules: [
+  variants: {
     textColors: ['responsive', 'hover', 'focus', 'before', 'after'],
-  ],
+  },
   
   plugins: [
     require('tailwindcss-pseudo-elements'),
