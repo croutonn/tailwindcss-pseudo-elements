@@ -5,15 +5,15 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yutahaga/tailwindcss-pseudo-elements.git"
+    "url": "git+https://github.com/croutonn/tailwindcss-pseudo-elements.git"
   },
   "keywords": [
     "tailwindcss"
   ],
-  "author": "Yuta Haga",
+  "author": "@croutonn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yutahaga/tailwindcss-pseudo-elements/issues"
+    "url": "https://github.com/croutonn/tailwindcss-pseudo-elements/issues"
   },
-  "homepage": "https://github.com/yutahaga/tailwindcss-pseudo-elements#readme"
+  "homepage": "https://github.com/croutonn/tailwindcss-pseudo-elements#readme"
 }
