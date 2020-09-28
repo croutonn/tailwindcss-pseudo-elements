@@ -1,7 +1,7 @@
-const pseudoElements = require('./pseudo-elements')
+const { pseudoElements, hasPluginFactory } = require('./lib')
 
-module.exports = function({addVariant, e}) {
-  const escape = e || (x => x)
+function plugin({addVariant, e}) {
+  const escape = hasPluginFactory ? e : (x => x)
   pseudoElements.forEach(pseudo => {
     addVariant(pseudo, ({modifySelectors, separator}) => {
       modifySelectors(({className}) => {
@@ -10,3 +10,5 @@ module.exports = function({addVariant, e}) {
     })
   })
 }
+
+module.exports = hasPluginFactory ? require('tailwindcss/plugin')(plugin) : plugin

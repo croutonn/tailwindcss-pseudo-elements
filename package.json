@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/croutonn/tailwindcss-pseudo-elements/issues"
   },
-  "homepage": "https://github.com/croutonn/tailwindcss-pseudo-elements#readme"
+  "homepage": "https://github.com/croutonn/tailwindcss-pseudo-elements#readme",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3",
+    "postcss": "^8.1.0",
+    "tailwindcss": "^1.8.10"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=0.7.4"
+  }
 }
