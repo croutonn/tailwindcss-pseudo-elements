@@ -1,11 +1,13 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@4.0.1
+executors:
+  nodelts:
+    docker:
+      - image: cimg/node:12.18
 
 jobs:
   prepare_dependencies:
-    executor: node/default
+    executor: nodelts
     steps:
       - checkout
       - run:
@@ -30,7 +32,7 @@ jobs:
             - .
 
   test:
-    executor: node/default
+    executor: nodelts
     steps:
       - attach_workspace:
           at: .
