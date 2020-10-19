@@ -23,7 +23,7 @@
     "chai": "^4.2.0",
     "mocha": "^8.2.0",
     "postcss": "^8.1.2",
-    "tailwindcss": "^1.9.4"
+    "tailwindcss": "^1.9.5"
   },
   "peerDependencies": {
     "tailwindcss": ">=0.7.4"
