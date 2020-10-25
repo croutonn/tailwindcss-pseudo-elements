@@ -21,46 +21,46 @@ yarn add tailwindcss-pseudo-elements -D
 ### Configuration
 
 ```js
-const plugin = require("tailwindcss/plugin");
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   variants: {
     textColor: [
-      "responsive",
-      "hover",
-      "focus",
-      "before",
-      "after",
-      "hover_before",
-      "hover_after",
-      "focus_before",
+      'responsive',
+      'hover',
+      'focus',
+      'before',
+      'after',
+      'hover_before',
+      'hover_after',
+      'focus_before',
     ],
   },
 
   plugins: [
-    require("tailwindcss-pseudo-elements"),
+    require('tailwindcss-pseudo-elements'),
     // This plugin is useful in combination with tailwindcss-aspect-ratio.
-    require("tailwindcss-aspect-ratio")({
+    require('tailwindcss-aspect-ratio')({
       ratios: {
-        "16/9": [16, 9],
-        "4/3": [4, 3],
-        "3/2": [3, 2],
-        "1/1": [1, 1],
+        '16/9': [16, 9],
+        '4/3': [4, 3],
+        '3/2': [3, 2],
+        '1/1': [1, 1],
       },
-      variants: ["before", "hover_before", "responsive"],
+      variants: ['before', 'hover_before', 'responsive'],
     }),
     plugin(function ({ addUtilities }) {
       addUtilities(
         {
-          ".empty-content": {
+          '.empty-content': {
             content: "''",
           },
         },
-        ["before"]
-      );
+        ['before']
+      )
     }),
   ],
-};
+}
 ```
 
 ### HTML

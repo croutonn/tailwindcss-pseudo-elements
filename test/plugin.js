@@ -1,6 +1,7 @@
 const { assert } = require('chai')
 const postcss = require('postcss')
 const tailwindcss = require('tailwindcss')
+
 const processor = postcss([tailwindcss('./test/tailwind.config.js')])
 
 describe('Basic Usage', () => {

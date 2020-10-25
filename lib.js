@@ -9,7 +9,7 @@ module.exports = {
     'grammar-error ',
     'marker ',
     'placeholder ',
-    'selection'
+    'selection',
   ],
 
   pseudoClasses: [
@@ -46,12 +46,12 @@ module.exports = {
     'visite',
   ],
 
-  hasPluginFactory: function() {
+  hasPluginFactory: (function () {
     try {
       require.resolve('tailwindcss/plugin')
     } catch (e) {
       return false
     }
     return true
-  }()
+  })(),
 }

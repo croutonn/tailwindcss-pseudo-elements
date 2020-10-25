@@ -1,6 +1,8 @@
+const plugin = require('..')
+
 module.exports = {
   textColors: {
-    'black': '#22292f',
+    black: '#22292f',
   },
   variants: {
     textColor: ['before', 'after', 'hover_before', 'hover_after'],
@@ -8,7 +10,5 @@ module.exports = {
   modules: {
     textColors: ['before', 'after', 'hover_before', 'hover_after'],
   },
-  plugins: [
-      require('../')
-  ],
+  plugins: [plugin],
 }

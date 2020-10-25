@@ -17,12 +17,24 @@
   },
   "homepage": "https://github.com/croutonn/tailwindcss-pseudo-elements#readme",
   "scripts": {
-    "test": "mocha"
+    "fix": "yarn fix:prettier && yarn fix:eslint",
+    "fix:eslint": "eslint . --fix",
+    "fix:prettier": "prettier --write .",
+    "lint": "yarn lint:prettier && yarn lint:eslint",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier .",
+    "pretest": "lint",
+    "test": "mocha",
+    "test-only": "mocha",
+    "version": "yarn fix"
   },
   "devDependencies": {
+    "@croutonn/eslint-config": "^1.0.2",
     "chai": "^4.2.0",
+    "eslint": "^7.12.0",
     "mocha": "^8.1.3",
     "postcss": "^8.1.0",
+    "prettier": "^2.1.2",
     "tailwindcss": "^1.8.10"
   },
   "peerDependencies": {
