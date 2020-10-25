@@ -46,7 +46,7 @@ module.exports = {
     'visite',
   ],
 
-  hasPluginFactory: (function () {
+  hasPluginFactory: (() => {
     try {
       require.resolve('tailwindcss/plugin')
     } catch (e) {
