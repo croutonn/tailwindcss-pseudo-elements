@@ -1,9 +1,14 @@
 version: 2.1
 
+orbs:
+  puppeteer: threetreeslight/puppeteer@0.1.2
+
 executors:
   nodelts:
     docker:
-      - image: cimg/node:12.18
+      - image: circleci/node:12
+        environment:
+          NODE_ENV: development
 
 jobs:
   prepare_dependencies:
@@ -17,6 +22,7 @@ jobs:
           keys:
             - yarn-deps-{{ checksum "yarn.lock" }}
             - yarn-deps
+      - puppeteer/install
       - run:
           name: yarn install
           command: yarn install
