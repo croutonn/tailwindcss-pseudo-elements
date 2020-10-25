@@ -33,3 +33,17 @@ describe('with pseudo-classes', () => {
     assert.include(css, '.hover\\:before\\:text-blue:hover::before')
   })
 })
+
+describe('with configuration', () => {
+  it('@tailwind', async () => {
+    const testData = `@tailwind utilities;`
+    const { css } = await processor.process(testData, { from: '', to: '' })
+    assert.include(css, '.foo\\:bar\\:text-black:foo::bar')
+  })
+
+  it('@variants', async () => {
+    const testData = `@variants foo_bar{.text-blue{color:blue}}`
+    const { css } = await processor.process(testData, { from: '', to: '' })
+    assert.include(css, '.foo\\:bar\\:text-blue:foo::bar')
+  })
+})

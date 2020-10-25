@@ -1,9 +1,28 @@
 const { pseudoElements, pseudoClasses, hasPluginFactory } = require('./lib')
 
-const plugin = ({ addVariant, e }) => {
+const plugin = ({ addVariant, e, config }) => {
   const escape = hasPluginFactory ? e : (x) => x
+  const customPseudoElements = config
+    ? config('customPseudoElements') || []
+    : []
+  const customPseudoClasses = config ? config('customPseudoClasses') || [] : []
 
-  pseudoElements.forEach((pelement) => {
+  if (!Array.isArray(customPseudoElements)) {
+    throw new Error('`customElements` must be an array of string.')
+  }
+
+  if (!Array.isArray(customPseudoClasses)) {
+    throw new Error('`customClasses` must be an array of string.')
+  }
+
+  const mergedPseudoElements = Array.from(
+    new Set(pseudoElements.concat(customPseudoElements))
+  )
+  const mergedPseudoClasses = Array.from(
+    new Set(pseudoClasses.concat(customPseudoClasses))
+  )
+
+  mergedPseudoElements.forEach((pelement) => {
     addVariant(pelement, ({ modifySelectors, separator }) => {
       modifySelectors(({ className }) => {
         return `.${escape(`${pelement}${separator}${className}`)}::${pelement}`
@@ -11,8 +30,8 @@ const plugin = ({ addVariant, e }) => {
     })
   })
 
-  pseudoClasses.forEach((pclass) => {
-    pseudoElements.forEach((pelement) => {
+  mergedPseudoClasses.forEach((pclass) => {
+    mergedPseudoElements.forEach((pelement) => {
       addVariant(`${pclass}_${pelement}`, ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.${escape(

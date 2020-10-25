@@ -31,11 +31,18 @@ module.exports = {
       'focus',
       'before',
       'after',
+      // If you want to combine it with a pseudo class,
+      // use `<pseudo-class>_<pseudo-element>`.
       'hover_before',
       'hover_after',
       'focus_before',
+      'foo_bar',
     ],
   },
+
+  // You can set up your own pseudo-classes and pseudo-elements.
+  customPseudoClasses: ['foo'],
+  customPseudoElements: ['bar'],
 
   plugins: [
     require('tailwindcss-pseudo-elements'),
