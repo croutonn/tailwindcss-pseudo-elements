@@ -30,7 +30,7 @@
     "version": "yarn fix"
   },
   "devDependencies": {
-    "@croutonn/eslint-config": "^1.0.3",
+    "@croutonn/eslint-config": "^1.0.4",
     "chai": "^4.2.0",
     "eslint": "^7.12.1",
     "mocha": "^8.2.0",
