@@ -38,10 +38,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@croutonn/eslint-config@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.2.tgz#54766d2768c21922be29832276d7cbd6bbfb3302"
-  integrity sha512-nHiB8MU6BQYPPyCVlvf4I/TO94YwLPvNWt95SylGlJTc7N93iTT70fzD+eDJV28mzleh2mJmJD+Lb49i/d3ing==
+"@croutonn/eslint-config@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.3.tgz#7960a7c1c2361bb22469c80c875e2c9781a7dd87"
+  integrity sha512-NVqpJv4f6EWRFwIEI5T7GloiDP5eDCirVAHlFqqKJwLko5YnfEOtUDK9EliHkZDC9k7TsHCNRN1yXcQyMZG7Cw==
   dependencies:
     "@croutonn/eslint-plugin" "^0.2.3"
     "@typescript-eslint/eslint-plugin" "^4.5.0"
