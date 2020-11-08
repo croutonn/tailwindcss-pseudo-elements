@@ -17,7 +17,6 @@
   "packageRules": [
     {
       "depTypeList": ["peerDependencies"],
-      "excludePackageNames": ["stylelint"],
       "enabled": false
     }
   ]
