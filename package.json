@@ -25,8 +25,8 @@
     "lint:prettier": "prettier .",
     "pretest": "yarn update && yarn lint",
     "update": "node scripts/update-pseudos.js",
-    "test": "mocha",
-    "test-only": "mocha",
+    "test": "mocha --timeout 10000",
+    "test-only": "mocha --timeout 10000",
     "version": "yarn fix"
   },
   "devDependencies": {
