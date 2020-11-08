@@ -1,0 +1,80 @@
+name: Update Pseudos
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Run updating pseudos with ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: yarn install
+        run: yarn install
+        env:
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+
+      - name: Update pseudos
+        uses: mujo-code/puppeteer-headful@master
+        env:
+          CI: true
+        with:
+          args: yarn update
+
+      - uses: technote-space/get-diff-action@v3
+        with:
+          FILES: |
+            lib.js
+
+      - name: Test code
+        if: env.GIT_DIFF
+        uses: mujo-code/puppeteer-headful@master
+        env:
+          CI: true
+        with:
+          args: yarn test
+
+      - name: Commit files
+        if: env.GIT_DIFF
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Update pseudos" -a
+
+      - name: Bump up the version
+        if: env.GIT_DIFF
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag-prefix: v
+          patch-wording: Update pseudos
+
+      - name: Release
+        if: env.GIT_DIFF && startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          body: Update pseudos
+
+      - name: Publish to NPM
+        if: env.GIT_DIFF
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
