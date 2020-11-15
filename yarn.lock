@@ -63,9 +63,9 @@
     eslint-plugin-react-hooks "^4.2.0"
 
 "@croutonn/eslint-plugin@^0.2.8":
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/@croutonn/eslint-plugin/-/eslint-plugin-0.2.8.tgz#20c405d25bddd942609beb8d7f367eb6832a0d30"
-  integrity sha512-sKl3FvlKp104R866A6UeiKwbIU0FxYQAQz+nFRYvpy1ttIDcsGIgnIS4kYXx1fGmsRQcvmyqTx2SlgfFqDCD5A==
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@croutonn/eslint-plugin/-/eslint-plugin-0.2.9.tgz#dafe3c4fa9895f5584fcc237c88c79299f131992"
+  integrity sha512-Ac5M4Yl5U34AlxXcXjsdTKLbOqVUtsqzKXSvTFuxS04scHc2WbIWiQwiDPjgrR+ccu9pEGDyvZl+leDVJF1ehQ==
   dependencies:
     "@babel/types" "^7.12.6"
     array-includes "^3.1.1"
