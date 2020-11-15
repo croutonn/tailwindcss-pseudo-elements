@@ -48,12 +48,12 @@
     to-fast-properties "^2.0.0"
 
 "@croutonn/eslint-config@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.11.tgz#7dc2e52e18a73e042de30b84318029f0a7e66938"
-  integrity sha512-mV/V75B2ws5unuPW4U+spQnZ4fLZNoCvHiH+jdI4OMMZuFdxJ9ueEC7YkIzVo7m806VgrlL8ZKNvPTo6EPl7xQ==
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.12.tgz#a67634a4768f398088401cd22b65bd770cc02cc2"
+  integrity sha512-WHpRoJnCFAXi8hAwE24aJzTNr1oMqVoPvX9paIocLFoUxA0JjG+P+EpjEwgsaSE+VOO3qozmVg4MILStirUp4g==
   dependencies:
-    "@croutonn/eslint-plugin" "^0.2.8"
-    "@typescript-eslint/eslint-plugin" "^4.6.1"
+    "@croutonn/eslint-plugin" "^0.2.9"
+    "@typescript-eslint/eslint-plugin" "^4.7.0"
     eslint-config-airbnb "^18.2.1"
     eslint-config-airbnb-typescript "^12.0.0"
     eslint-config-prettier "^6.15.0"
@@ -62,7 +62,7 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.2.0"
 
-"@croutonn/eslint-plugin@^0.2.8":
+"@croutonn/eslint-plugin@^0.2.9":
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/@croutonn/eslint-plugin/-/eslint-plugin-0.2.9.tgz#dafe3c4fa9895f5584fcc237c88c79299f131992"
   integrity sha512-Ac5M4Yl5U34AlxXcXjsdTKLbOqVUtsqzKXSvTFuxS04scHc2WbIWiQwiDPjgrR+ccu9pEGDyvZl+leDVJF1ehQ==
@@ -139,7 +139,7 @@
   dependencies:
     "@types/node" "*"
 
-"@typescript-eslint/eslint-plugin@^4.6.1":
+"@typescript-eslint/eslint-plugin@^4.7.0":
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.7.0.tgz#85c9bbda00c0cb604d3c241f7bc7fb171a2d3479"
   integrity sha512-li9aiSVBBd7kU5VlQlT1AqP0uWGDK6JYKUQ9cVDnOg34VNnd9t4jr0Yqc/bKxJr/tDCPDaB4KzoSFN9fgVxe/Q==
