@@ -48,9 +48,9 @@
     to-fast-properties "^2.0.0"
 
 "@croutonn/eslint-config@^1.0.11":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.12.tgz#a67634a4768f398088401cd22b65bd770cc02cc2"
-  integrity sha512-WHpRoJnCFAXi8hAwE24aJzTNr1oMqVoPvX9paIocLFoUxA0JjG+P+EpjEwgsaSE+VOO3qozmVg4MILStirUp4g==
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.13.tgz#e9399167493631519fd8abb87af02e92fc7292a2"
+  integrity sha512-JeMwtUR/hLRIvToXXuCCRMtycAxLGP5a7fHRsNE3o2TZB36jeGMNn/mDZz+gp8e50mv7o/zfxfDOwTVfygnRrw==
   dependencies:
     "@croutonn/eslint-plugin" "^0.2.9"
     "@typescript-eslint/eslint-plugin" "^4.7.0"
