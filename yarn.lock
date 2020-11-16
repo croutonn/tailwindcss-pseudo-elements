@@ -47,7 +47,7 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@croutonn/eslint-config@^1.0.11":
+"@croutonn/eslint-config@^1.0.13":
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.13.tgz#e9399167493631519fd8abb87af02e92fc7292a2"
   integrity sha512-JeMwtUR/hLRIvToXXuCCRMtycAxLGP5a7fHRsNE3o2TZB36jeGMNn/mDZz+gp8e50mv7o/zfxfDOwTVfygnRrw==
