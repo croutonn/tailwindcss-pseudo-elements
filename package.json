@@ -36,7 +36,7 @@
     "mocha": "^8.2.1",
     "postcss": "^8.1.7",
     "prettier": "^2.1.2",
-    "puppeteer": "^5.4.1",
+    "puppeteer": "^5.5.0",
     "tailwindcss": "^1.9.6"
   },
   "peerDependencies": {
