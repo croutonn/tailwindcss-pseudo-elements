@@ -48,12 +48,12 @@
     to-fast-properties "^2.0.0"
 
 "@croutonn/eslint-config@^1.0.13":
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.13.tgz#e9399167493631519fd8abb87af02e92fc7292a2"
-  integrity sha512-JeMwtUR/hLRIvToXXuCCRMtycAxLGP5a7fHRsNE3o2TZB36jeGMNn/mDZz+gp8e50mv7o/zfxfDOwTVfygnRrw==
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.14.tgz#0b2afcadc27414fec740fe097d3c3a1ce37f794e"
+  integrity sha512-jxLO/Ax98rNpv9wokCq8HFVitJCe6frcMGOdWTQKePD8ncC9WRL6l6KPAG7Cq184JtpP1Tu20PHAbm/8jPpXBw==
   dependencies:
     "@croutonn/eslint-plugin" "^0.2.9"
-    "@typescript-eslint/eslint-plugin" "^4.7.0"
+    "@typescript-eslint/eslint-plugin" "^4.8.2"
     eslint-config-airbnb "^18.2.1"
     eslint-config-airbnb-typescript "^12.0.0"
     eslint-config-prettier "^6.15.0"
@@ -139,7 +139,7 @@
   dependencies:
     "@types/node" "*"
 
-"@typescript-eslint/eslint-plugin@^4.7.0":
+"@typescript-eslint/eslint-plugin@^4.8.2":
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.8.2.tgz#cf9102ec800391caa574f589ffe0623cca1d9308"
   integrity sha512-gQ06QLV5l1DtvYtqOyFLXD9PdcILYqlrJj2l+CGDlPtmgLUzc1GpqciJFIRvyfvgLALpnxYINFuw+n9AZhPBKQ==
