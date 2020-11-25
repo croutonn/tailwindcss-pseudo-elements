@@ -47,7 +47,7 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@croutonn/eslint-config@^1.0.13":
+"@croutonn/eslint-config@^1.0.14":
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/@croutonn/eslint-config/-/eslint-config-1.0.14.tgz#0b2afcadc27414fec740fe097d3c3a1ce37f794e"
   integrity sha512-jxLO/Ax98rNpv9wokCq8HFVitJCe6frcMGOdWTQKePD8ncC9WRL6l6KPAG7Cq184JtpP1Tu20PHAbm/8jPpXBw==
@@ -2103,7 +2103,7 @@ postcss@^7.0.11, postcss@^7.0.18, postcss@^7.0.32:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.1.9:
+postcss@^8.1.10:
   version "8.1.10"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.1.10.tgz#129834f94c720554d2cfdaeb27d5542ac4a026ea"
   integrity sha512-iBXEV5VTTYaRRdxiFYzTtuv2lGMQBExqkZKSzkJe+Fl6rvQrA/49UVGKqB+LG54hpW/TtDBMGds8j33GFNW7pg==

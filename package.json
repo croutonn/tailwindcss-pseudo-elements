@@ -30,11 +30,11 @@
     "version": "yarn fix"
   },
   "devDependencies": {
-    "@croutonn/eslint-config": "^1.0.13",
+    "@croutonn/eslint-config": "^1.0.14",
     "chai": "^4.2.0",
     "eslint": "^7.13.0",
     "mocha": "^8.2.1",
-    "postcss": "^8.1.9",
+    "postcss": "^8.1.10",
     "prettier": "^2.1.2",
     "puppeteer": "^5.5.0",
     "tailwindcss": "^1.9.6"
