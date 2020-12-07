@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-pseudo-elements",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "TailwindCSS Plugin that adds variants of pseudo elements.",
   "main": "index.js",
   "repository": {
