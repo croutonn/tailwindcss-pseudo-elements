@@ -82,3 +82,20 @@ module.exports = {
   <img class="absolute pin w-full h-full" src="..." />
 </div>
 ```
+
+#### Content Property Utilities
+
+There are utilities that set the attributes of HTML elements to the content property.
+
+Mark it up as follows:
+
+```html
+<p
+  class="text-lg text-blue-600 content-before content-after content-hover-before"
+  tw-content-before="🧡"
+  tw-content-hover-before="💖"
+  tw-content-after="💙️"
+>
+  Tailwind CSS
+</p>
+```
