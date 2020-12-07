@@ -1,6 +1,7 @@
+const addContentUtilities = require('./content-utilities')
 const { pseudoElements, pseudoClasses, hasPluginFactory } = require('./lib')
 
-const plugin = ({ addVariant, e, config }) => {
+const plugin = ({ addUtilities, addVariant, e, config }) => {
   const escape = hasPluginFactory ? e : (x) => x
   const customPseudoElements = config
     ? config('customPseudoElements') || []
@@ -40,6 +41,12 @@ const plugin = ({ addVariant, e, config }) => {
         })
       })
     })
+  })
+
+  addContentUtilities({
+    addUtilities,
+    prefix: 'tw-content',
+    pseudoClasses: mergedPseudoClasses,
   })
 }
 

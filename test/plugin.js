@@ -9,6 +9,10 @@ describe('Basic Usage', () => {
     const testData = `@tailwind utilities;`
     const { css } = await processor.process(testData, { from: '', to: '' })
     assert.include(css, '.before\\:text-black::before')
+    assert.include(
+      css,
+      '.content-before::before {\n  content: attr(tw-content-before)\n}'
+    )
   })
 
   it('@variants', async () => {
