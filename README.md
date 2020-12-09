@@ -25,19 +25,21 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   variants: {
-    textColor: [
-      'responsive',
-      'hover',
-      'focus',
-      'before',
-      'after',
-      // If you want to combine it with a pseudo class,
-      // use `<pseudo-class>_<pseudo-element>`.
-      'hover_before',
-      'hover_after',
-      'focus_before',
-      'foo_bar',
-    ],
+    extend: {
+      textColor: [
+        'responsive',
+        'hover',
+        'focus',
+        'before',
+        'after',
+        // If you want to combine it with a pseudo class,
+        // use `<pseudo-class>_<pseudo-element>`.
+        'hover_before',
+        'hover_after',
+        'focus_before',
+        'foo_bar',
+      ],
+    },
   },
 
   // You can set up your own pseudo-classes and pseudo-elements.

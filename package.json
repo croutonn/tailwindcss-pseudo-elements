@@ -32,12 +32,12 @@
   "devDependencies": {
     "@croutonn/eslint-config": "^1.0.14",
     "chai": "^4.2.0",
-    "eslint": "^7.13.0",
+    "eslint": "^7.15.0",
     "mocha": "^8.2.1",
     "postcss": "^8.1.14",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.1",
     "puppeteer": "^5.5.0",
-    "tailwindcss": "^1.9.6"
+    "tailwindcss": "^2.0.1"
   },
   "peerDependencies": {
     "tailwindcss": ">=0.7.4"
