@@ -34,7 +34,7 @@
     "chai": "^4.2.0",
     "eslint": "^7.15.0",
     "mocha": "^8.2.1",
-    "postcss": "^8.2.1",
+    "postcss": "^8.2.2",
     "prettier": "^2.2.1",
     "puppeteer": "^5.5.0",
     "tailwindcss": "^2.0.2"
