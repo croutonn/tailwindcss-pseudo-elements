@@ -1933,9 +1933,9 @@ postcss-js@^3.0.3:
     postcss "^8.1.6"
 
 postcss-nested@^5.0.1:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-5.0.3.tgz#2f46d77a06fc98d9c22344fd097396f5431386db"
-  integrity sha512-R2LHPw+u5hFfDgJG748KpGbJyTv7Yr33/2tIMWxquYuHTd9EXu27PYnKi7BxMXLtzKC0a0WVsqHtd7qIluQu/g==
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-5.0.4.tgz#da5c42a47b5c5955bee37d6c519135c28a558e68"
+  integrity sha512-/dimXVqdUAVS2ZiIX0uvyk9UCI825y6LW4TnjG51JTKF89CcorHPAjTUGPF70k2wlQYts5OzfnhYMgfGfHCClQ==
   dependencies:
     postcss-selector-parser "^6.0.4"
 
@@ -2281,9 +2281,9 @@ sprintf-js@~1.0.2:
     strip-ansi "^4.0.0"
 
 string-width@^4.1.0, string-width@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.0.tgz#952182c46cc7b2c313d1596e623992bd163b72b5"
-  integrity sha512-zUz5JD+tgqtuDjMhwIg5uFVV3dtqZ9yQJlZVfq4I01/K5Paj5UHj7VyrQOJvzawSVlKpObApbfD0Ed6yJc+1eg==
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.1.tgz#1933ce1f470973d224368009bd1316cad81d5f4f"
+  integrity sha512-LL0OLyN6AnfV9xqGQpDBwedT2Rt63737LxvsRxbcwpa2aIeynBApG2Sm//F3TaLHIR1aJBN52DWklc06b94o5Q==
   dependencies:
     emoji-regex "^8.0.0"
     is-fullwidth-code-point "^3.0.0"
