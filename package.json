@@ -31,10 +31,10 @@
   },
   "devDependencies": {
     "@croutonn/eslint-config": "^1.0.14",
-    "chai": "^4.3.0",
+    "chai": "^4.3.3",
     "eslint": "^7.15.0",
     "mocha": "^8.3.0",
-    "postcss": "^8.2.6",
+    "postcss": "^8.2.7",
     "prettier": "^2.2.1",
     "puppeteer": "^5.5.0",
     "tailwindcss": "^2.0.3"
