@@ -65,13 +65,4 @@ module.exports = {
     'valid',
     'visited',
   ],
-
-  hasPluginFactory: (() => {
-    try {
-      require.resolve('tailwindcss/plugin')
-    } catch (e) {
-      return false
-    }
-    return true
-  })(),
 }

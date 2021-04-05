@@ -49,15 +49,6 @@ ${elements.map((e) => `    '${e}'`).join(',\n')},
   pseudoClasses: [
 ${classes.map((c) => `    '${c}'`).join(',\n')},
   ],
-
-  hasPluginFactory: (() => {
-    try {
-      require.resolve('tailwindcss/plugin')
-    } catch (e) {
-      return false
-    }
-    return true
-  })(),
 }
 `
 
