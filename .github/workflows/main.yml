@@ -17,16 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run tests with ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.node-version }}
       - name: yarn install
         run: yarn install
-        env:
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
       - name: Test code
-        uses: mujo-code/puppeteer-headful@master
         env:
           CI: true
-        with:
-          args: yarn test
+        run: yarn test
