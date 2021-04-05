@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "@croutonn:maintenance"
-  ]
+  "extends": ["@croutonn:maintenance"]
 }
