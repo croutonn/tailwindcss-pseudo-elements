@@ -56,7 +56,7 @@ const plugin = (options = {}) => {
       addContentUtilities({
         addUtilities,
         prefix:
-          'prefix' in contentUtilities
+          typeof contentUtilities === 'object' && 'prefix' in contentUtilities
             ? contentUtilities.prefix || 'tw-content'
             : 'tw-content',
         pseudoClasses: mergedPseudoClasses,
