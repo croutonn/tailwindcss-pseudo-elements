@@ -11,6 +11,7 @@ const defaultOptions = {
   },
   classNameReplacer: {},
   emptyContent: true,
+  multiplePseudoClasses: [],
 }
 
 const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
@@ -41,6 +42,10 @@ const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
     throw new Error('`classNameReplacer` must be an object.')
   }
 
+  pluginConfig.multiplePseudoClasses = pluginConfig.multiplePseudoClasses.map(
+    (s) => s.split(':').slice(1)
+  )
+
   const namer = (name) => {
     return typeof pluginConfig.classNameReplacer === 'object' &&
       name in pluginConfig.classNameReplacer &&
@@ -69,7 +74,7 @@ const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
     mergedPseudoClasses.forEach((pclass) => {
       mergedPseudoElements.forEach((pelement) => {
         addVariant(
-          `${pclass}_${pelement}`,
+          `${pclass}::${pelement}`,
           ({ modifySelectors, separator }) => {
             modifySelectors(({ className }) => {
               return `.${e(
@@ -77,6 +82,35 @@ const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
                   `${pclass}${separator}${pelement}${separator}${className}`
                 )
               )}:${pclass}::${pelement}`
+            })
+          }
+        )
+      })
+    })
+
+    pluginConfig.multiplePseudoClasses.forEach((pclassList) => {
+      const selector = pclassList.join(':')
+
+      addVariant(selector, ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(
+            namer(`${pclassList.join(separator)}${separator}${className}`)
+          )}:${selector}`
+        })
+      })
+
+      mergedPseudoElements.forEach((pelement) => {
+        addVariant(
+          `${selector}::${pelement}`,
+          ({ modifySelectors, separator }) => {
+            modifySelectors(({ className }) => {
+              return `.${e(
+                namer(
+                  `${pclassList.join(
+                    separator
+                  )}${separator}${pelement}${separator}${className}`
+                )
+              )}:${selector}::${pelement}`
             })
           }
         )

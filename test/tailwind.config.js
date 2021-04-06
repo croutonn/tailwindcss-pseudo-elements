@@ -6,11 +6,14 @@ module.exports = {
   },
   variants: {
     extend: {
-      textColor: ['before', 'after', 'hover_before', 'hover_after', 'foo_bar'],
+      textColor: [
+        'before',
+        'after',
+        'hover::before',
+        'hover::after',
+        'foo::bar',
+      ],
     },
-  },
-  modules: {
-    textColors: ['before', 'after', 'hover_before', 'hover_after', 'foo_bar'],
   },
   plugins: [
     plugin({

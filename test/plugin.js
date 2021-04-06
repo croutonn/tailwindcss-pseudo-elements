@@ -47,7 +47,7 @@ describe('with pseudo-classes', () => {
   })
 
   it('@variants', async () => {
-    const testData = `@variants hover_after,hover_before{.text-blue{color:blue}}`
+    const testData = `@variants hover::after,hover::before{.text-blue{color:blue}}`
     const { css } = await createProcessor().process(testData, {
       from: '',
       to: '',
@@ -119,5 +119,29 @@ describe('with configuration', () => {
     })
 
     assert.notInclude(css, '.before\\:empty-content::before')
+  })
+
+  it('Multiple Pseudo Classes', async () => {
+    const testData = `@tailwind utilities;`
+    const options = {
+      multiplePseudoClasses: [':checked:hover'],
+    }
+    const { css } = await createProcessor({
+      variants: {
+        extend: {
+          textColor: ['checked:hover', 'checked:hover::before'],
+        },
+      },
+      plugins: [plugin(options)],
+    }).process(testData, {
+      from: '',
+      to: '',
+    })
+
+    assert.include(css, '.checked\\:hover\\:text-black:checked:hover')
+    assert.include(
+      css,
+      '.checked\\:hover\\:before\\:text-black:checked:hover::before'
+    )
   })
 })
