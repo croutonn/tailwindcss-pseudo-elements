@@ -1,8 +1,29 @@
-# tailwindcss-pseudo-elements
+# tailwindcss-pseudo-elements <!-- omit in toc -->
 
-TailwindCSS Plugin that adds variants of pseudo elements (`::before`, `::after`, `::first-letter`, etc.).
+TailwindCSS Plug-in that adds variants of pseudo elements (`::before`, `::after`, `::first-letter`, etc.).
 
-## Usage
+---
+
+- [Getting Started](#getting-started)
+  - [Install](#install)
+    - [NPM](#npm)
+    - [Yarn](#yarn)
+  - [Write the configuration for the plug-in](#write-the-configuration-for-the-plug-in)
+  - [Set the variants](#set-the-variants)
+  - [Write the HTML](#write-the-html)
+    - [Content Property Utilities](#content-property-utilities)
+    - [Empty Property Utility](#empty-property-utility)
+- [Options](#options)
+  - [`customPseudoClasses` and `customPseudoElements`](#custompseudoclasses-and-custompseudoelements)
+  - [`contentUtilities`](#contentutilities)
+  - [`emptyContent`](#emptycontent)
+  - [`classNameReplacer`](#classnamereplacer)
+- [Recommended](#recommended)
+  - [tailwindcss-aspect-ratio](#tailwindcss-aspect-ratio)
+
+---
+
+## Getting Started
 
 ### Install
 
@@ -18,11 +39,32 @@ npm install tailwindcss-pseudo-elements --save-dev
 yarn add tailwindcss-pseudo-elements -D
 ```
 
-### Configuration
+### Write the configuration for the plug-in
+
+Pass [the option](#options) object to the plug-in as follows:
 
 ```js
-const plugin = require('tailwindcss/plugin')
+module.exports = {
+  plugins: [
+    require('tailwindcss-pseudo-elements')({
+      customPseudoClasses: ['foo'],
+      customPseudoElements: ['bar'],
+      contentUtilities: false,
+      emptyContent: false,
+      classNameReplacer: {
+        'hover:before:text-black': 'hbt',
+      },
+    }),
+  ],
+}
+```
 
+### Set the variants
+
+Naming convention of the variants is like `pseudo-class:pseudo-class::pseudo-element`.  
+An example configuration is shown below.
+
+```js
 module.exports = {
   variants: {
     extend: {
@@ -32,45 +74,18 @@ module.exports = {
         'focus',
         'before',
         'after',
-        // If you want to combine it with a pseudo class,
-        // use `<pseudo-class>_<pseudo-element>`.
-        'hover_before',
-        'hover_after',
-        'focus_before',
-        'foo_bar',
+        'hover::before',
+        'hover::after',
+        'focus::before',
+        'checked:hover',
+        'checked:hover::before',
       ],
     },
   },
-
-  plugins: [
-    require('tailwindcss-pseudo-elements')({
-      // You can set up your own pseudo-classes and pseudo-elements. (type: string[]  default: [])
-      customPseudoClasses: ['foo'],
-      customPseudoElements: ['bar'],
-      // Configuration of the Content Property Utilities (type: boolean | { prefix: string }  default: { prefix: "tw-content" })
-      contentUtilities: false,
-      // Whether to generate utility class for empty content pseudo-element (type: boolean  default: true)
-      emptyContent: false,
-      // You can replace frequently used class names with different names (type: Record<string, string>, default: {})
-      classNameReplacer: {
-        'hover:before:text-black': 'hbt',
-      },
-    }),
-    // This plugin is useful in combination with tailwindcss-aspect-ratio.
-    require('tailwindcss-aspect-ratio')({
-      ratios: {
-        '16/9': [16, 9],
-        '4/3': [4, 3],
-        '3/2': [3, 2],
-        '1/1': [1, 1],
-      },
-      variants: ['before', 'hover_before', 'responsive'],
-    }),
-  ],
 }
 ```
 
-### HTML
+### Write the HTML
 
 ```html
 <div
@@ -91,11 +106,69 @@ Mark it up as follows:
 
 ```html
 <p
-  class="text-lg text-blue-600 content-before content-after content-hover-before"
+  class="content-before content-after content-hover-before"
   tw-content-before="🧡"
   tw-content-hover-before="💖"
   tw-content-after="💙️"
 >
   Tailwind CSS
 </p>
+```
+
+#### Empty Property Utility
+
+There is a utility class that sets `{ content: "" }` in the `::before`.
+
+```html
+<p class="before:empty-content"></p>
+```
+
+## Options
+
+### `customPseudoClasses` and `customPseudoElements`
+
+You can set up your own pseudo-classes and pseudo-elements.
+
+type: `string[]`  
+default: `[]`
+
+### `contentUtilities`
+
+Configuration of [the Content Property Utilities](#content-property-utilities).
+
+type: `boolean | { "prefix": string }`  
+default: `{ "prefix": "tw-content" }`
+
+### `emptyContent`
+
+Whether to generate [the Empty Property Utility](#empty-property-utility).
+
+type: `boolean`
+default: `true`
+
+### `classNameReplacer`
+
+You can replace frequently used class names with different names.
+
+type: `Record<string, string>`  
+default: `{}`
+
+## Recommended
+
+### tailwindcss-aspect-ratio
+
+```js
+  plugins: [
+    require('tailwindcss-pseudo-elements')(pseudoOptions),
+    require('tailwindcss-aspect-ratio')({
+      ratios: {
+        '16/9': [16, 9],
+        '4/3': [4, 3],
+        '3/2': [3, 2],
+        '1/1': [1, 1],
+      },
+      variants: ['before', 'hover::before', 'responsive'],
+    }),
+  ],
+}
 ```
