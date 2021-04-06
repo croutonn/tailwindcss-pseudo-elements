@@ -44,12 +44,16 @@ module.exports = {
 
   plugins: [
     require('tailwindcss-pseudo-elements')({
-      // You can set up your own pseudo-classes and pseudo-elements. (string[])
+      // You can set up your own pseudo-classes and pseudo-elements. (type: string[])
       customPseudoClasses: ['foo'],
       customPseudoElements: ['bar'],
-      // Configuration of the Content Property Utilities (boolean | { prefix: string })
+      // Configuration of the Content Property Utilities (type: boolean | { prefix: string })
       contentUtilities: {
         prefix: 'tw-content',
+      },
+      // You can replace frequently used class names with different names (type: Record<string, string>)
+      classNameReplacer: {
+        'hover:before:text-black': 'hbt',
       },
     }),
     // This plugin is useful in combination with tailwindcss-aspect-ratio.

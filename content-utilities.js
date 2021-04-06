@@ -1,15 +1,22 @@
-const addContentUtilities = ({ addUtilities, prefix, pseudoClasses }) => {
+const addContentUtilities = ({
+  addUtilities,
+  namer,
+  prefix,
+  pseudoClasses,
+}) => {
   const targetPseudoElements = ['before', 'after']
   const utilities = targetPseudoElements.reduce((icurrent, pseudoElement) => {
     return {
       ...icurrent,
-      [`.content-${pseudoElement}::${pseudoElement}`]: {
+      [`.${namer(`content-${pseudoElement}`)}::${pseudoElement}`]: {
         content: `attr(${prefix}-${pseudoElement})`,
       },
       ...pseudoClasses.reduce((jcurrent, pseudoClass) => {
         return {
           ...jcurrent,
-          [`.content-${pseudoClass}-${pseudoElement}:${pseudoClass}::${pseudoElement}`]: {
+          [`.${namer(
+            `content-${pseudoClass}-${pseudoElement}`
+          )}:${pseudoClass}::${pseudoElement}`]: {
             content: `attr(${prefix}-${pseudoClass}-${pseudoElement})`,
           },
         }

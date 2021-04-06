@@ -76,4 +76,30 @@ describe('with configuration', () => {
       '.content-before::before {\n  content: attr(tw-content-before)\n}'
     )
   })
+
+  it('Class Name Replacer', async () => {
+    const testData = `@tailwind utilities;`
+    const options = {
+      customPseudoClasses: ['foo'],
+      customPseudoElements: ['bar'],
+      classNameReplacer: {
+        'before:text-black': 'btb',
+        'foo:bar:text-black': 'fbt',
+        'content-before': 'cb',
+      },
+    }
+    const { css } = await createProcessor({
+      plugins: [plugin(options)],
+    }).process(testData, {
+      from: '',
+      to: '',
+    })
+
+    assert.notInclude(css, '.before\\:text-black::before')
+    assert.include(css, '.btb::before')
+    assert.notInclude(css, '.foo\\:bar\\:text-black:foo::bar')
+    assert.include(css, '.fbt:foo::bar')
+    assert.notInclude(css, '.content-before::before')
+    assert.include(css, '.cb::before')
+  })
 })

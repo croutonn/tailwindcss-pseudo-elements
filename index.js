@@ -9,6 +9,7 @@ const plugin = tailwindcssPlugin.withOptions((options = {}) => {
     const customPseudoClasses = options.customPseudoClasses || []
     const contentUtilities =
       options.contentUtilities || options.contentUtilities !== false
+    const classNameReplacer = options.classNameReplacer || {}
 
     if (!Array.isArray(customPseudoElements)) {
       throw new Error('`customElements` must be an array of string.')
@@ -16,6 +17,14 @@ const plugin = tailwindcssPlugin.withOptions((options = {}) => {
 
     if (!Array.isArray(customPseudoClasses)) {
       throw new Error('`customClasses` must be an array of string.')
+    }
+
+    const namer = (name) => {
+      return typeof classNameReplacer === 'object' &&
+        name in classNameReplacer &&
+        classNameReplacer[name]
+        ? classNameReplacer[name]
+        : name
     }
 
     const mergedPseudoElements = Array.from(
@@ -28,7 +37,9 @@ const plugin = tailwindcssPlugin.withOptions((options = {}) => {
     mergedPseudoElements.forEach((pelement) => {
       addVariant(pelement, ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
-          return `.${e(`${pelement}${separator}${className}`)}::${pelement}`
+          return `.${e(
+            namer(`${pelement}${separator}${className}`)
+          )}::${pelement}`
         })
       })
     })
@@ -40,7 +51,9 @@ const plugin = tailwindcssPlugin.withOptions((options = {}) => {
           ({ modifySelectors, separator }) => {
             modifySelectors(({ className }) => {
               return `.${e(
-                `${pclass}${separator}${pelement}${separator}${className}`
+                namer(
+                  `${pclass}${separator}${pelement}${separator}${className}`
+                )
               )}:${pclass}::${pelement}`
             })
           }
@@ -51,6 +64,7 @@ const plugin = tailwindcssPlugin.withOptions((options = {}) => {
     if (contentUtilities) {
       addContentUtilities({
         addUtilities,
+        namer,
         prefix:
           typeof contentUtilities === 'object' && 'prefix' in contentUtilities
             ? contentUtilities.prefix || 'tw-content'
