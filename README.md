@@ -42,12 +42,16 @@ module.exports = {
     },
   },
 
-  // You can set up your own pseudo-classes and pseudo-elements.
-  customPseudoClasses: ['foo'],
-  customPseudoElements: ['bar'],
-
   plugins: [
-    require('tailwindcss-pseudo-elements'),
+    require('tailwindcss-pseudo-elements')({
+      // You can set up your own pseudo-classes and pseudo-elements. (string[])
+      customPseudoClasses: ['foo'],
+      customPseudoElements: ['bar'],
+      // Configuration of the Content Property Utilities (boolean | { prefix: string })
+      contentUtilities: {
+        prefix: 'tw-content',
+      },
+    }),
     // This plugin is useful in combination with tailwindcss-aspect-ratio.
     require('tailwindcss-aspect-ratio')({
       ratios: {

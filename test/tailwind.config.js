@@ -12,7 +12,10 @@ module.exports = {
   modules: {
     textColors: ['before', 'after', 'hover_before', 'hover_after', 'foo_bar'],
   },
-  plugins: [plugin()],
-  customPseudoClasses: ['foo'],
-  customPseudoElements: ['bar'],
+  plugins: [
+    plugin({
+      customPseudoClasses: ['foo'],
+      customPseudoElements: ['bar'],
+    }),
+  ],
 }

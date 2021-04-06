@@ -2,6 +2,8 @@ const { assert } = require('chai')
 const postcss = require('postcss')
 const tailwindcss = require('tailwindcss')
 
+const plugin = require('..')
+
 const baseConfig = require('./tailwind.config')
 
 const createProcessor = (config = {}) => {
@@ -55,21 +57,23 @@ describe('with pseudo-classes', () => {
 })
 
 describe('with configuration', () => {
-  it('@tailwind', async () => {
+  it('Turn off the Content Property Utilities', async () => {
     const testData = `@tailwind utilities;`
-    const { css } = await createProcessor().process(testData, {
+    const options = {
+      customPseudoClasses: ['foo'],
+      customPseudoElements: ['bar'],
+      contentUtilities: false,
+    }
+    const { css } = await createProcessor({
+      plugins: [plugin(options)],
+    }).process(testData, {
       from: '',
       to: '',
     })
-    assert.include(css, '.foo\\:bar\\:text-black:foo::bar')
-  })
 
-  it('@variants', async () => {
-    const testData = `@variants foo_bar{.text-blue{color:blue}}`
-    const { css } = await createProcessor().process(testData, {
-      from: '',
-      to: '',
-    })
-    assert.include(css, '.foo\\:bar\\:text-blue:foo::bar')
+    assert.notInclude(
+      css,
+      '.content-before::before {\n  content: attr(tw-content-before)\n}'
+    )
   })
 })

@@ -3,16 +3,12 @@ const tailwindcssPlugin = require('tailwindcss/plugin')
 const addContentUtilities = require('./content-utilities')
 const { pseudoElements, pseudoClasses } = require('./lib')
 
-const plugin = (options = {}) => {
-  const { contentUtilities = true } = options
-
-  return tailwindcssPlugin(({ addUtilities, addVariant, e, config }) => {
-    const customPseudoElements = config
-      ? config('customPseudoElements') || []
-      : []
-    const customPseudoClasses = config
-      ? config('customPseudoClasses') || []
-      : []
+const plugin = tailwindcssPlugin.withOptions((options = {}) => {
+  return ({ addUtilities, addVariant, e }) => {
+    const customPseudoElements = options.customPseudoElements || []
+    const customPseudoClasses = options.customPseudoClasses || []
+    const contentUtilities =
+      options.contentUtilities || options.contentUtilities !== false
 
     if (!Array.isArray(customPseudoElements)) {
       throw new Error('`customElements` must be an array of string.')
@@ -62,7 +58,7 @@ const plugin = (options = {}) => {
         pseudoClasses: mergedPseudoClasses,
       })
     }
-  })
-}
+  }
+})
 
 module.exports = plugin
