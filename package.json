@@ -22,7 +22,7 @@
     "fix:prettier": "prettier --write .",
     "lint": "yarn lint:prettier && yarn lint:eslint",
     "lint:eslint": "eslint .",
-    "lint:prettier": "prettier .",
+    "lint:prettier": "prettier --check .",
     "pretest": "yarn update && yarn lint",
     "update": "node scripts/update-pseudos.js",
     "test": "mocha --timeout 10000",
