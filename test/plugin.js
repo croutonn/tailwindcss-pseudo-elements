@@ -22,6 +22,7 @@ describe('Basic Usage', () => {
       css,
       '.content-before::before {\n  content: attr(tw-content-before)\n}'
     )
+    assert.include(css, '.before\\:empty-content::before')
   })
 
   it('@variants', async () => {
@@ -101,5 +102,22 @@ describe('with configuration', () => {
     assert.include(css, '.fbt:foo::bar')
     assert.notInclude(css, '.content-before::before')
     assert.include(css, '.cb::before')
+  })
+
+  it('Turn off the .empty-content class', async () => {
+    const testData = `@tailwind utilities;`
+    const options = {
+      customPseudoClasses: ['foo'],
+      customPseudoElements: ['bar'],
+      emptyContent: false,
+    }
+    const { css } = await createProcessor({
+      plugins: [plugin(options)],
+    }).process(testData, {
+      from: '',
+      to: '',
+    })
+
+    assert.notInclude(css, '.before\\:empty-content::before')
   })
 })

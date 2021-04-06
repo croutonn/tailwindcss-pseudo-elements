@@ -3,37 +3,59 @@ const tailwindcssPlugin = require('tailwindcss/plugin')
 const addContentUtilities = require('./content-utilities')
 const { pseudoElements, pseudoClasses } = require('./lib')
 
-const plugin = tailwindcssPlugin.withOptions((options = {}) => {
+const defaultOptions = {
+  customPseudoElements: [],
+  customPseudoClasses: [],
+  contentUtilities: {
+    prefix: 'tw-content',
+  },
+  classNameReplacer: {},
+  emptyContent: true,
+}
+
+const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
+  const pluginConfig = {
+    ...defaultOptions,
+    ...options,
+  }
+
+  if (!Array.isArray(pluginConfig.customPseudoElements)) {
+    throw new Error('`customElements` must be an array of string.')
+  }
+
+  if (!Array.isArray(pluginConfig.customPseudoClasses)) {
+    throw new Error('`customClasses` must be an array of string.')
+  }
+
+  if (
+    pluginConfig.contentUtilities !== false &&
+    typeof pluginConfig.contentUtilities !== 'object'
+  ) {
+    pluginConfig.contentUtilities = defaultOptions.contentUtilities
+  }
+
+  if (
+    typeof pluginConfig.classNameReplacer !== 'object' ||
+    Array.isArray(pluginConfig.classNameReplacer)
+  ) {
+    throw new Error('`classNameReplacer` must be an object.')
+  }
+
+  const namer = (name) => {
+    return typeof pluginConfig.classNameReplacer === 'object' &&
+      name in pluginConfig.classNameReplacer &&
+      pluginConfig.classNameReplacer[name]
+      ? pluginConfig.classNameReplacer[name]
+      : name
+  }
+  const mergedPseudoElements = Array.from(
+    new Set(pseudoElements.concat(pluginConfig.customPseudoElements))
+  )
+  const mergedPseudoClasses = Array.from(
+    new Set(pseudoClasses.concat(pluginConfig.customPseudoClasses))
+  )
+
   return ({ addUtilities, addVariant, e }) => {
-    const customPseudoElements = options.customPseudoElements || []
-    const customPseudoClasses = options.customPseudoClasses || []
-    const contentUtilities =
-      options.contentUtilities || options.contentUtilities !== false
-    const classNameReplacer = options.classNameReplacer || {}
-
-    if (!Array.isArray(customPseudoElements)) {
-      throw new Error('`customElements` must be an array of string.')
-    }
-
-    if (!Array.isArray(customPseudoClasses)) {
-      throw new Error('`customClasses` must be an array of string.')
-    }
-
-    const namer = (name) => {
-      return typeof classNameReplacer === 'object' &&
-        name in classNameReplacer &&
-        classNameReplacer[name]
-        ? classNameReplacer[name]
-        : name
-    }
-
-    const mergedPseudoElements = Array.from(
-      new Set(pseudoElements.concat(customPseudoElements))
-    )
-    const mergedPseudoClasses = Array.from(
-      new Set(pseudoClasses.concat(customPseudoClasses))
-    )
-
     mergedPseudoElements.forEach((pelement) => {
       addVariant(pelement, ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
@@ -61,16 +83,27 @@ const plugin = tailwindcssPlugin.withOptions((options = {}) => {
       })
     })
 
-    if (contentUtilities) {
+    if (pluginConfig.contentUtilities) {
       addContentUtilities({
         addUtilities,
         namer,
         prefix:
-          typeof contentUtilities === 'object' && 'prefix' in contentUtilities
-            ? contentUtilities.prefix || 'tw-content'
-            : 'tw-content',
+          'prefix' in pluginConfig.contentUtilities
+            ? pluginConfig.contentUtilities.prefix
+            : defaultOptions.contentUtilities.prefix,
         pseudoClasses: mergedPseudoClasses,
       })
+    }
+
+    if (pluginConfig.emptyContent) {
+      addUtilities(
+        {
+          [`.${namer('empty-content')}`]: {
+            content: "''",
+          },
+        },
+        ['before']
+      )
     }
   }
 })

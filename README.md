@@ -44,14 +44,14 @@ module.exports = {
 
   plugins: [
     require('tailwindcss-pseudo-elements')({
-      // You can set up your own pseudo-classes and pseudo-elements. (type: string[])
+      // You can set up your own pseudo-classes and pseudo-elements. (type: string[]  default: [])
       customPseudoClasses: ['foo'],
       customPseudoElements: ['bar'],
-      // Configuration of the Content Property Utilities (type: boolean | { prefix: string })
-      contentUtilities: {
-        prefix: 'tw-content',
-      },
-      // You can replace frequently used class names with different names (type: Record<string, string>)
+      // Configuration of the Content Property Utilities (type: boolean | { prefix: string }  default: { prefix: "tw-content" })
+      contentUtilities: false,
+      // Whether to generate utility class for empty content pseudo-element (type: boolean  default: true)
+      emptyContent: false,
+      // You can replace frequently used class names with different names (type: Record<string, string>, default: {})
       classNameReplacer: {
         'hover:before:text-black': 'hbt',
       },
@@ -65,16 +65,6 @@ module.exports = {
         '1/1': [1, 1],
       },
       variants: ['before', 'hover_before', 'responsive'],
-    }),
-    plugin(function ({ addUtilities }) {
-      addUtilities(
-        {
-          '.empty-content': {
-            content: "''",
-          },
-        },
-        ['before']
-      )
     }),
   ],
 }
