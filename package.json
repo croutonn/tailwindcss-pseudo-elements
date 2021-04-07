@@ -37,9 +37,9 @@
     "postcss": "^8.2.9",
     "prettier": "^2.2.1",
     "puppeteer": "^8.0.0",
-    "tailwindcss": "^2.0.4"
+    "tailwindcss": "^2.1.1"
   },
   "peerDependencies": {
-    "tailwindcss": ">=1.0.6"
+    "tailwindcss": ">=1.9.6"
   }
 }
