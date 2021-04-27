@@ -81,9 +81,11 @@ describe('with configuration', () => {
   it('Class Name Replacer', async () => {
     const testData = `@tailwind utilities;`
     const options = {
+      emptyContent: true,
       customPseudoClasses: ['foo'],
       customPseudoElements: ['bar'],
       classNameReplacer: {
+        'hover:before:text-black': 'hbt',
         'before:text-black': 'btb',
         'foo:bar:text-black': 'fbt',
         'content-before': 'cb',
@@ -95,7 +97,8 @@ describe('with configuration', () => {
       from: '',
       to: '',
     })
-
+    assert.notInclude(css, '.hover\\:before\\:text-black:hover::before')
+    assert.include(css, '.hbt:hover::before')
     assert.notInclude(css, '.before\\:text-black::before')
     assert.include(css, '.btb::before')
     assert.notInclude(css, '.foo\\:bar\\:text-black:foo::bar')
