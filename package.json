@@ -33,7 +33,7 @@
     "@croutonn/eslint-config": "^1.0.14",
     "chai": "^4.3.4",
     "eslint": "^7.15.0",
-    "mocha": "^8.3.2",
+    "mocha": "^8.4.0",
     "postcss": "^8.2.14",
     "prettier": "^2.2.1",
     "puppeteer": "^8.0.0",
