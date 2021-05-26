@@ -115,6 +115,8 @@ Mark it up as follows:
 </p>
 ```
 
+**NOTE:** If you encounter problems with **AMP** Validation, you can work around them by setting the `prefix` with the `contentUtilities` option.
+
 #### Empty Property Utility
 
 There is a utility class that sets `{ content: "" }` in the `::before`.
