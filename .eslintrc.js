@@ -8,7 +8,47 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['@croutonn/eslint-config/javascript-loose'],
+  extends: ['airbnb/base', 'prettier'],
+  rules: {
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
+    'no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'no-restricted-imports': ['error', { patterns: ['./', '../'] }],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'parent',
+          'sibling',
+          'index',
+          'internal',
+        ],
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'parent',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+        },
+      },
+    ],
+  },
   overrides: [
     {
       files: [
@@ -21,7 +61,10 @@ module.exports = {
       env: {
         mocha: true,
       },
-      extends: ['@croutonn/eslint-config/javascript-test'],
+      rules: {
+        'no-restricted-imports': 'off',
+        'import/no-extraneous-dependencies': 'off',
+      },
     },
   ],
 }

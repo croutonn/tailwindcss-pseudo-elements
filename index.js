@@ -46,13 +46,12 @@ const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
     (s) => s.split(':').slice(1)
   )
 
-  const namer = (name) => {
-    return typeof pluginConfig.classNameReplacer === 'object' &&
-      name in pluginConfig.classNameReplacer &&
-      pluginConfig.classNameReplacer[name]
+  const namer = (name) =>
+    typeof pluginConfig.classNameReplacer === 'object' &&
+    name in pluginConfig.classNameReplacer &&
+    pluginConfig.classNameReplacer[name]
       ? pluginConfig.classNameReplacer[name]
       : name
-  }
   const mergedPseudoElements = Array.from(
     new Set(pseudoElements.concat(pluginConfig.customPseudoElements))
   )
@@ -63,11 +62,10 @@ const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
   return ({ addUtilities, addVariant, e }) => {
     mergedPseudoElements.forEach((pelement) => {
       addVariant(pelement, ({ modifySelectors, separator }) => {
-        modifySelectors(({ className }) => {
-          return `.${e(
-            namer(`${pelement}${separator}${className}`)
-          )}::${pelement}`
-        })
+        modifySelectors(
+          ({ className }) =>
+            `.${e(namer(`${pelement}${separator}${className}`))}::${pelement}`
+        )
       })
     })
 
@@ -76,13 +74,14 @@ const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
         addVariant(
           `${pclass}::${pelement}`,
           ({ modifySelectors, separator }) => {
-            modifySelectors(({ className }) => {
-              return `.${e(
-                namer(
-                  `${pclass}${separator}${pelement}${separator}${className}`
-                )
-              )}:${pclass}::${pelement}`
-            })
+            modifySelectors(
+              ({ className }) =>
+                `.${e(
+                  namer(
+                    `${pclass}${separator}${pelement}${separator}${className}`
+                  )
+                )}:${pclass}::${pelement}`
+            )
           }
         )
       })
@@ -92,26 +91,28 @@ const plugin = tailwindcssPlugin.withOptions((options = defaultOptions) => {
       const selector = pclassList.join(':')
 
       addVariant(selector, ({ modifySelectors, separator }) => {
-        modifySelectors(({ className }) => {
-          return `.${e(
-            namer(`${pclassList.join(separator)}${separator}${className}`)
-          )}:${selector}`
-        })
+        modifySelectors(
+          ({ className }) =>
+            `.${e(
+              namer(`${pclassList.join(separator)}${separator}${className}`)
+            )}:${selector}`
+        )
       })
 
       mergedPseudoElements.forEach((pelement) => {
         addVariant(
           `${selector}::${pelement}`,
           ({ modifySelectors, separator }) => {
-            modifySelectors(({ className }) => {
-              return `.${e(
-                namer(
-                  `${pclassList.join(
-                    separator
-                  )}${separator}${pelement}${separator}${className}`
-                )
-              )}:${selector}::${pelement}`
-            })
+            modifySelectors(
+              ({ className }) =>
+                `.${e(
+                  namer(
+                    `${pclassList.join(
+                      separator
+                    )}${separator}${pelement}${separator}${className}`
+                  )
+                )}:${selector}::${pelement}`
+            )
           }
         )
       })

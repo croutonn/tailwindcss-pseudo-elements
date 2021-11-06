@@ -6,9 +6,8 @@ const plugin = require('..')
 
 const baseConfig = require('./tailwind.config')
 
-const createProcessor = (config = {}) => {
-  return postcss([tailwindcss({ ...baseConfig, ...config })])
-}
+const createProcessor = (config = {}) =>
+  postcss([tailwindcss({ ...baseConfig, ...config })])
 
 describe('Basic Usage', () => {
   it('@tailwind', async () => {
