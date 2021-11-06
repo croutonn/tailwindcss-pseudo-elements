@@ -7,7 +7,10 @@ const DOCUMENT_URL = {
   classes: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes',
   elements: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements',
 }
-const CODES_SELECTOR = '#index>ul>li>a>code'
+const CODES_SELECTOR = {
+  classes: '#alphabetical_index+div>ul>li>a>code',
+  elements: '#index+div>ul>li>a>code',
+}
 
 /**
  * @typedef {import("puppeteer").Browser} Browser
@@ -17,7 +20,7 @@ const CODES_SELECTOR = '#index>ul>li>a>code'
  * @param {Browser} browser
  * @returns {Promise<string[]>}
  */
-const getPseudos = async (browser, url, selector = CODES_SELECTOR) => {
+const getPseudos = async (browser, url, selector) => {
   const page = await browser.newPage()
   await page.goto(url)
   const codeElements = await page.$$(selector)
@@ -35,8 +38,8 @@ const getPseudos = async (browser, url, selector = CODES_SELECTOR) => {
 ;(async () => {
   const browser = await puppeteer.launch()
   const [classes, elements] = await Promise.all([
-    getPseudos(browser, DOCUMENT_URL.classes),
-    getPseudos(browser, DOCUMENT_URL.elements),
+    getPseudos(browser, DOCUMENT_URL.classes, CODES_SELECTOR.classes),
+    getPseudos(browser, DOCUMENT_URL.elements, CODES_SELECTOR.elements),
   ])
   await browser.close()
 
