@@ -8,33 +8,26 @@ jobs:
   update:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
       - uses: actions/checkout@v2
         with:
           ref: main
-          persist-credentials: false
-          fetch-depth: 0
 
-      - name: Run updating pseudos with ${{ matrix.node-version }}
+      - name: Run updating pseudos with Node.js v14
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
+
+      - name: Install operating system dependencies and chromium
+        run: npx playwright install --with-deps chromium
 
       - name: yarn install
-        run: yarn install
+        run: yarn install --frozen-lockfile
         env:
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: true
 
       - name: Update pseudos
-        uses: mujo-code/puppeteer-headful@v2
-        env:
-          CI: true
-        with:
-          args: yarn update
+        run: yarn update
 
       - uses: technote-space/get-diff-action@v5
         with:
@@ -43,11 +36,9 @@ jobs:
 
       - name: Test code
         if: env.GIT_DIFF
-        uses: mujo-code/puppeteer-headful@v2
+        run: yarn test
         env:
           CI: true
-        with:
-          args: yarn test
 
       - name: Commit files
         if: env.GIT_DIFF

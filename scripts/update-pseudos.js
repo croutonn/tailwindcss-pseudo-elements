@@ -1,7 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 
-const puppeteer = require('puppeteer')
+const { chromium, devices } = require('playwright')
+
+const DEVICE = devices['iPhone 13 Pro']
 
 const DOCUMENT_URL = {
   classes: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes',
@@ -13,15 +15,17 @@ const CODES_SELECTOR = {
 }
 
 /**
- * @typedef {import("puppeteer").Browser} Browser
+ * @typedef {import("playwright").BrowserContext} BrowserContext
  */
 
 /**
- * @param {Browser} browser
+ * @param {BrowserContext} context
+ * @param {string} url
+ * @param {string} selector
  * @returns {Promise<string[]>}
  */
-const getPseudos = async (browser, url, selector) => {
-  const page = await browser.newPage()
+const getPseudos = async (context, url, selector) => {
+  const page = await context.newPage()
   await page.goto(url)
   const codeElements = await page.$$(selector)
   const codes = await Promise.all(
@@ -36,10 +40,16 @@ const getPseudos = async (browser, url, selector) => {
 }
 
 ;(async () => {
-  const browser = await puppeteer.launch()
+  const browser = await chromium.launch({
+    args: ['--disable-dev-shm-usage', '--ipc=host'],
+  })
+  const context = await browser.newContext({
+    ...DEVICE,
+    locale: 'en-US',
+  })
   const [classes, elements] = await Promise.all([
-    getPseudos(browser, DOCUMENT_URL.classes, CODES_SELECTOR.classes),
-    getPseudos(browser, DOCUMENT_URL.elements, CODES_SELECTOR.elements),
+    getPseudos(context, DOCUMENT_URL.classes, CODES_SELECTOR.classes),
+    getPseudos(context, DOCUMENT_URL.elements, CODES_SELECTOR.elements),
   ])
   await browser.close()
 
@@ -54,6 +64,5 @@ ${classes.map((c) => `    '${c}'`).join(',\n')},
   ],
 }
 `
-
   fs.writeFileSync(path.resolve(__dirname, '../lib.js'), output, 'utf-8')
 })()
